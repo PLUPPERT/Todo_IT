@@ -1,13 +1,15 @@
 package org.pluppert;
 
+import java.util.UUID;
+
 public class Person {
-    private int id;
+    private final int id;
     private String firstName;
     private String lastName;
     private String email;
 
     public Person(String firstName, String lastName, String email) {
-
+        this.id = UUID.randomUUID().hashCode();
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
@@ -43,8 +45,15 @@ public class Person {
         if (email == null) throw new IllegalArgumentException("Not allowed to set email to 'null'");
         this.email = email;
     }
-
-    public static String getSummary() {
-        return "mjau";
+    public String getSummary() {
+        final StringBuilder sb = new StringBuilder("Person{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
+
+

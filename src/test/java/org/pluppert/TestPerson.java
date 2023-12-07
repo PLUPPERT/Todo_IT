@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class TestPerson {
+class TestPerson {
     Person person = new Person("Bosse", "Startplugg", "bosse@gmailus.com");
 
     @Test
@@ -14,6 +14,5 @@ public class TestPerson {
 
         assertEquals(expectedFirstName, firstNameReturned);
     }
-
 
 }

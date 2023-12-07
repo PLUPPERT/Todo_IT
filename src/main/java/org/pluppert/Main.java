@@ -3,7 +3,9 @@ package org.pluppert;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.printf("Hello and welcome!");
+        Person person = new Person("Mjau", "Kattsson", "mjau_katts@gmailur.se");
+
+        System.out.println("person.getId() = " + person.getId());
 
 
     }
