@@ -5,7 +5,7 @@ public class Main {
 
         Person person = new Person("Mjau", "Kattsson", "mjau_katts@gmailur.se");
 
-        System.out.println("person.getId() = " + person.getId());
+        System.out.println(person.getSummary());
 
 
     }

@@ -92,4 +92,14 @@ class TestPerson {
 
         Assertions.assertEquals("Not allowed to set email to 'null'", thrown.getMessage());
     }
+    @Test
+    void getSummaryReturnsCorrectString() {
+        String expectedString = "Person{id=" + person.getId() +
+                ", firstName='" + person.getFirstName() +
+                "', lastName='" + person.getLastName() +
+                "', email='" + person.getEmail() + "'}";
+        String actualString = person.getSummary();
+
+        assertEquals(expectedString, actualString);
+    }
 }
