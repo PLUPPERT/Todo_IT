@@ -31,7 +31,6 @@ class TestPerson {
     }
     @Test
     void testSetFirstNameExpectedException() {
-
         IllegalArgumentException thrown = Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> {
@@ -58,7 +57,6 @@ class TestPerson {
     }
     @Test
     void testSetLastNameExpectedException() {
-
         IllegalArgumentException thrown = Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> {
@@ -69,4 +67,29 @@ class TestPerson {
         Assertions.assertEquals("Not allowed to set last name to 'null'", thrown.getMessage());
     }
 
+    @Test
+    void canGetEmail() {
+        String expectedEmail = "bosse@gmailus.com";
+        String emailReturned = person.getEmail();
+
+        assertEquals(expectedEmail, emailReturned);
+    }
+    @Test
+    void canSetEmail() {
+        String expectedEmail = "bosse@gmailus.se";
+        person.setEmail("bosse@gmailus.se");
+        String emailReturned = person.getEmail();
+        assertEquals(expectedEmail, emailReturned);
+    }
+    @Test
+    void testEmailExpectedException() {
+        IllegalArgumentException thrown = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> {
+                    //Code under test
+                    person.setEmail(null);
+                }, "IllegalArgumentException was expected");
+
+        Assertions.assertEquals("Not allowed to set email to 'null'", thrown.getMessage());
+    }
 }
