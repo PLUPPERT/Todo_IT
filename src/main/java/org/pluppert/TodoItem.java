@@ -27,47 +27,36 @@ public class TodoItem {
         setTaskDescription(taskDescription);
         setDeadLine(deadLine);
     }
-
     public static int getId() {
         return id;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getTaskDescription() {
         return taskDescription;
     }
-
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
     }
-
     public LocalDate getDeadLine() {
         return deadLine;
     }
-
     public void setDeadLine(LocalDate deadLine) {
         this.deadLine = deadLine;
     }
-
     public boolean isDone() {
         return done;
     }
-
     public void setDone(boolean done) {
         this.done = done;
     }
-
     public Person getCreator() {
         return creator;
     }
-
     public void setCreator(Person creator) {
         this.creator = creator;
     }
