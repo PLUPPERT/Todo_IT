@@ -54,7 +54,7 @@ public class TodoItem {
     }
 
     public void setDeadline(LocalDate deadline) {
-        if (deadline == null) throw new IllegalArgumentException("Deadline can't be 'null'");
+        if (deadline == null) throw new IllegalArgumentException("Deadline can't be set to 'null'");
         this.deadline = deadline;
     }
 
@@ -71,12 +71,12 @@ public class TodoItem {
     }
 
     private void setCreator(Person creator) {
-        if (creator == null) throw new IllegalArgumentException("Creator can't be 'null'");
+        if (creator == null) throw new IllegalArgumentException("Creator can't be set to 'null'");
         this.creator = creator;
     }
 
     public boolean isOverdue() {
-        return getDeadline().isAfter(LocalDate.now());
+        return getDeadline().isBefore(LocalDate.now());
     }
 
     public String getSummary() {

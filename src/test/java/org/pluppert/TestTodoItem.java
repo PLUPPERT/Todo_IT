@@ -64,4 +64,73 @@ class TestTodoItem {
         item.setTaskDescription(expectedTitle);
         assertEquals(expectedTitle, item.getTaskDescription());
     }
+    @Test
+    void canGetDeadline() {
+        LocalDate expectedDeadline = LocalDate.parse("2028-03-29");
+        assertEquals(expectedDeadline, item.getDeadline());
+    }
+    @Test
+    void canSetDeadline() {
+        LocalDate expectedDeadline = LocalDate.parse("2028-03-10");
+        item.setDeadline(expectedDeadline);
+        assertEquals(expectedDeadline, item.getDeadline());
+    }
+    @Test
+    void settingDeadlineToNullShouldThrowException() {
+        IllegalArgumentException thrownByNull = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> {
+                    //Code under test
+                    item.setDeadline(null);
+                }, "Argument was 'null' : IllegalArgumentException was expected\n");
+
+        Assertions.assertEquals("Deadline can't be set to 'null'", thrownByNull.getMessage());
+    }
+    @Test
+    void canGetIsDone() {
+        boolean expectedValue = false;
+        assertEquals(expectedValue, item.isDone());
+    }
+    @Test
+    void canSetDone() {
+        boolean expectedValue = true;
+        item.setDone(true);
+        assertEquals(expectedValue, item.isDone());
+    }
+    @Test
+    void canGetCreator() {
+        Person expectedPerson = person;
+        assertEquals(expectedPerson, item.getCreator());
+    }
+    @Test
+    void initializingCreatorToNullShouldThrowException() {
+        IllegalArgumentException thrownByNull = Assertions.assertThrowsExactly(
+                IllegalArgumentException.class,
+                () -> {
+                    //Code under test
+                    new TodoItem("Item 1", "Do whatever, I don't care...", item.getDeadline(), null, idGenerator);
+                }, "Creator parameter was 'null' : IllegalArgumentException was expected\n");
+
+        Assertions.assertEquals("Creator can't be set to 'null'", thrownByNull.getMessage());
+    }
+    @Test
+    void isOverdueReturnsCorrectValue() {
+        boolean expectedValue = true;
+        item.setDeadline(LocalDate.parse("2020-03-10"));
+        assertEquals(expectedValue, item.isOverdue());
+    }
+    @Test
+    void getSummaryReturnsCorrectString() {
+        String expectedString = "TodoItem {\n" +
+                "\tid = '" + item.getId() + "',\n" +
+                "\ttitle = '" + item.getTitle() + "',\n" +
+                "\ttaskDescription = '" + item.getTaskDescription() + "',\n" +
+                "\tdeadline = " + item.getDeadline() + ",\n" +
+                "\tdone = " + item.isDone() + ",\n" +
+                "\tcreator = '" + item.getCreator().getFirstName() + " " + item.getCreator().getLastName() + "',\n" +
+                "\tisOverdue = " + item.isOverdue() + ",\n" +
+                '}';
+
+        assertEquals(expectedString, item.getSummary());
+    }
 }

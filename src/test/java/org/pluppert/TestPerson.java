@@ -106,8 +106,7 @@ class TestPerson {
                 "\tlastName = '" + person.getLastName() + "',\n" +
                 "\temail ='" + person.getEmail() + "'\n" +
                 '}';
-        String actualString = person.getSummary();
 
-        assertEquals(expectedString, actualString);
+        assertEquals(expectedString, person.getSummary());
     }
 }
