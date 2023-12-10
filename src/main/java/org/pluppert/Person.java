@@ -1,15 +1,15 @@
 package org.pluppert;
 
-import java.util.UUID;
+import org.pluppert.enums.IdType;
 
 public class Person {
-    private final int id;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
 
-    public Person(String firstName, String lastName, String email) {
-        this.id = UUID.randomUUID().hashCode();
+    public Person(String firstName, String lastName, String email, IdGenerator idGenerator) {
+        setId(idGenerator.getGeneratedId(IdType.PERSON));
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
@@ -17,6 +17,10 @@ public class Person {
 
     public int getId() {
         return id;
+    }
+
+    private void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -46,10 +50,11 @@ public class Person {
         this.email = email;
     }
     public String getSummary() {
-        return "Person{" + "id=" + getId() +
-                ", firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", email='" + getEmail() + '\'' +
+        return "Person {\n" +
+                "\tid = " + getId() + "," +
+                "\t'firstName = '" + getFirstName() + "',\n" +
+                "\tlastName = '" + getLastName() + "',\n" +
+                "\temail ='" + getEmail() + "'\n" +
                 '}';
     }
 }

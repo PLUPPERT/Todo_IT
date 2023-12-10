@@ -8,10 +8,11 @@ import org.junit.jupiter.api.Test;
 
 class TestPerson {
     Person person;
+    IdGenerator idGenerator = new IdGenerator();
 
     @BeforeEach
     public void initializePerson() {
-        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com");
+        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", idGenerator);
     }
     @Test
     void canGetFirstName() {
@@ -94,10 +95,12 @@ class TestPerson {
     }
     @Test
     void getSummaryReturnsCorrectString() {
-        String expectedString = "Person{id=" + person.getId() +
-                ", firstName='" + person.getFirstName() +
-                "', lastName='" + person.getLastName() +
-                "', email='" + person.getEmail() + "'}";
+        String expectedString = "Person {\n" +
+                "\tid = " + person.getId() + "," +
+                "\t'firstName = '" + person.getFirstName() + "',\n" +
+                "\tlastName = '" + person.getLastName() + "',\n" +
+                "\temail ='" + person.getEmail() + "'\n" +
+                '}';
         String actualString = person.getSummary();
 
         assertEquals(expectedString, actualString);

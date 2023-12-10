@@ -6,5 +6,5 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 public class TestTodoItem {
-
+    IdGenerator idGenerator = new IdGenerator();
 }
