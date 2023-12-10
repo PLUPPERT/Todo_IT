@@ -31,7 +31,7 @@ public class IdGenerator {
         };
     }
 
-    public static int getPersonId() {
+    private static int getPersonId() {
         return personId;
     }
 
@@ -39,7 +39,7 @@ public class IdGenerator {
         IdGenerator.personId = personId;
     }
 
-    public static int getItemId() {
+    private static int getItemId() {
         return itemId;
     }
 
@@ -47,7 +47,7 @@ public class IdGenerator {
         IdGenerator.itemId = itemId;
     }
 
-    public static int getTaskId() {
+    private static int getTaskId() {
         return taskId;
     }
 
