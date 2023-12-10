@@ -57,6 +57,9 @@ public class Person {
                 "\temail ='" + getEmail() + "'\n" +
                 '}';
     }
+    public String getFullName() {
+        return getFirstName() + " " + getLastName();
+    }
 }
 
 
