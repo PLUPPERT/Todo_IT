@@ -1,5 +1,7 @@
 package org.pluppert;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -13,14 +15,30 @@ public class Main {
         System.out.println(person2.getSummary());
         System.out.println(person3.getSummary());
         */
-        TodoItem item1 = new TodoItem("Bare Gört!", "Men schyssta, bare gört då! =(",null, person1, idGenerator);
-        TodoItem item2 = new TodoItem("Hitt på nåt!", "Nu börjar jag bli lite sur...",null, person2, idGenerator);
-        TodoItem item3 = new TodoItem("Det var droppen!", "Nej, nej, nej! Förlåååt...",null, person3, idGenerator);
+        TodoItem item1 = new TodoItem(
+                "Bare Gört!",
+                "Men schyssta, bare gört då! =(",
+                null,
+                person1,
+                idGenerator);
+        TodoItem item2 = new TodoItem(
+                "Hitt på nåt!",
+                "Nu börjar jag bli lite sur...",
+                null,
+                person2,
+                idGenerator);
+        TodoItem item3 = new TodoItem(
+                "Starta en hamsterklubb",
+                "Skapa en klubb för alla som älskar att skryta om sin hamster",
+                LocalDate.parse("2028-03-29"),
+                person3,
+                idGenerator);
         /*
         System.out.println(item1.getSummary());
         System.out.println(item2.getSummary());
-        System.out.println(item3.getSummary());
         */
+        System.out.println(item3.getSummary());
+
         TodoItemTask task1 = new TodoItemTask(item1, person1, idGenerator);
         TodoItemTask task2 = new TodoItemTask(item2, null, idGenerator);
         TodoItemTask task3 = new TodoItemTask(item3, person3, idGenerator);

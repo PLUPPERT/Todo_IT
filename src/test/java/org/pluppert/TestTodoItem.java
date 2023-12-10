@@ -13,7 +13,7 @@ class TestTodoItem {
     Person person;
     IdGenerator idGenerator = new IdGenerator();
     @BeforeEach
-    public void initializeInstances() {
+    public void init() {
         LocalDate deadline = LocalDate.parse("2028-03-29");
         this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", idGenerator);
         this.item = new TodoItem("Item 1", "Do whatever, I don't care...", deadline, person, idGenerator);
@@ -103,7 +103,7 @@ class TestTodoItem {
         assertEquals(expectedPerson, item.getCreator());
     }
     @Test
-    void initializingCreatorToNullShouldThrowException() {
+    void initCreatorToNullShouldThrowException() {
         IllegalArgumentException thrownByNull = Assertions.assertThrowsExactly(
                 IllegalArgumentException.class,
                 () -> {

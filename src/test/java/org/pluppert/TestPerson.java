@@ -11,7 +11,7 @@ class TestPerson {
     IdGenerator idGenerator = new IdGenerator();
 
     @BeforeEach
-    public void initializePerson() {
+    public void init() {
         this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", idGenerator);
     }
     @Test
