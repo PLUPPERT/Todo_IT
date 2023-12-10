@@ -35,7 +35,8 @@ public class TodoItem {
 
     public void setTitle(String title) {
         if ((title == null) || title.isEmpty()) {
-            throw new IllegalArgumentException("Title can't be 'null' or empty");
+            String message = (title != null) ? "Title can't be empty" : "Title can't be 'null'";
+            throw new IllegalArgumentException(message);
         }
         this.title = title;
     }
@@ -69,7 +70,7 @@ public class TodoItem {
         return creator;
     }
 
-    public void setCreator(Person creator) {
+    private void setCreator(Person creator) {
         if (creator == null) throw new IllegalArgumentException("Creator can't be 'null'");
         this.creator = creator;
     }

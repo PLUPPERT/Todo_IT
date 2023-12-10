@@ -15,6 +15,11 @@ class TestPerson {
         this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", idGenerator);
     }
     @Test
+    void canGetId() {
+        int expectedId = 1;
+        assertEquals(expectedId, person.getId());
+    }
+    @Test
     void canGetFirstName() {
         String expectedFirstName = "Bosse";
         String firstNameReturned = person.getFirstName();

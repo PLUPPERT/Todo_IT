@@ -4,13 +4,13 @@ import org.pluppert.enums.IdType;
 
 public class IdGenerator {
     private static int personId;
-    private static int todoItemId;
-    private static int todoItemTaskId;
+    private static int itemId;
+    private static int taskId;
 
     public IdGenerator() {
         setPersonId(0);
-        setTodoItemId(0);
-        setTodoItemTaskId(0);
+        setItemId(0);
+        setTaskId(0);
     }
 
     public int getGeneratedId(IdType idType) {
@@ -21,12 +21,12 @@ public class IdGenerator {
                 yield getPersonId();
             }
             case ITEM -> {
-                setTodoItemId(idGen.generateId(getTodoItemId()));
-                yield getTodoItemId();
+                setItemId(idGen.generateId(getItemId()));
+                yield getItemId();
             }
             case TASK -> {
-                setTodoItemTaskId(idGen.generateId(getTodoItemTaskId()));
-                yield getTodoItemTaskId();
+                setTaskId(idGen.generateId(getTaskId()));
+                yield getTaskId();
             }
         };
     }
@@ -39,20 +39,20 @@ public class IdGenerator {
         IdGenerator.personId = personId;
     }
 
-    public static int getTodoItemId() {
-        return todoItemId;
+    public static int getItemId() {
+        return itemId;
     }
 
-    private static void setTodoItemId(int todoItemId) {
-        IdGenerator.todoItemId = todoItemId;
+    private static void setItemId(int itemId) {
+        IdGenerator.itemId = itemId;
     }
 
-    public static int getTodoItemTaskId() {
-        return todoItemTaskId;
+    public static int getTaskId() {
+        return taskId;
     }
 
-    private static void setTodoItemTaskId(int todoItemTaskId) {
-        IdGenerator.todoItemTaskId = todoItemTaskId;
+    private static void setTaskId(int taskId) {
+        IdGenerator.taskId = taskId;
     }
 }
 
