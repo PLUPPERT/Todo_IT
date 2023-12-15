@@ -1,4 +1,4 @@
-package org.pluppert;
+package org.pluppert.sequencer;
 
 import org.pluppert.enums.IdType;
 

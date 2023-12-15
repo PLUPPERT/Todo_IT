@@ -1,7 +1,11 @@
-package org.pluppert;
+package org.pluppert.sequencer;
 
 import org.junit.jupiter.api.Test;
 import org.pluppert.enums.IdType;
+import org.pluppert.models.Person;
+import org.pluppert.models.TodoItem;
+import org.pluppert.models.TodoItemTask;
+import org.pluppert.sequencer.IdGenerator;
 
 import java.time.LocalDate;
 

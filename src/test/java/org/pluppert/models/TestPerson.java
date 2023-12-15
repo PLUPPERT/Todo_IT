@@ -1,10 +1,12 @@
-package org.pluppert;
+package org.pluppert.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.pluppert.models.Person;
+import org.pluppert.sequencer.IdGenerator;
 
 class TestPerson {
     Person person;

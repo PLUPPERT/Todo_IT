@@ -1,5 +1,6 @@
-package org.pluppert;
+package org.pluppert.models;
 
+import org.pluppert.sequencer.IdGenerator;
 import org.pluppert.enums.IdType;
 
 import java.time.LocalDate;

@@ -1,5 +1,6 @@
-package org.pluppert;
+package org.pluppert.models;
 
+import org.pluppert.sequencer.IdGenerator;
 import org.pluppert.enums.IdType;
 
 public class TodoItemTask {
@@ -17,32 +18,25 @@ public class TodoItemTask {
     public int getId() {
         return id;
     }
-
     private void setId(int id) {
         this.id = id;
     }
-
     public boolean isAssigned() {
         return assigned;
     }
-
     private void setAssigned(boolean assigned) {
         this.assigned = assigned;
     }
-
     public TodoItem getTodoItem() {
         return todoItem;
     }
-
     private void setTodoItem(TodoItem todoItem) {
         if (todoItem == null) throw new IllegalArgumentException("TodoItem can't be set to 'null'");
         this.todoItem = todoItem;
     }
-
     public Person getAssignee() {
         return assignee;
     }
-
     public void setAssignee(Person assignee) {
         if (!isAssigned()) {
             setAssigned(assignee != null);
@@ -50,7 +44,6 @@ public class TodoItemTask {
         } else {
             System.out.println("This task is already assigned to: " + getAssignee().getFullName());
         }
-
     }
 
     public String getSummary() {
