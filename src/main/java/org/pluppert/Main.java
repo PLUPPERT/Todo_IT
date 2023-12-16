@@ -53,8 +53,10 @@ public class Main {
 //        System.out.println(task1.getSummary());
 //        System.out.println(task2.getSummary());
 //        System.out.println(task3.getSummary());
+        String test = "åäZööÅ123-";
+        System.out.println("test = " + test);
 
-        AppUser appUser = new AppUser("MjauPelle", "abcdefa&", AppRole.ROLE_APP_USER);
+        AppUser appUser = new AppUser("MjauPelle", test, AppRole.ROLE_APP_USER);
 
         System.out.println(appUser);
     }

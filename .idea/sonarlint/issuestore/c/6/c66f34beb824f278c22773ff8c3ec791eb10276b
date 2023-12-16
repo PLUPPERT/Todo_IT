@@ -1,14 +1,14 @@
 
 a
-java:S1854"?Remove this useless assignment to local variable "idGenerator".(†€ÀÅúÿÿÿÿ8±ßıùÆ1
+java:S1854"?Remove this useless assignment to local variable "idGenerator".(†€ÀÅúÿÿÿÿ8Ìî‚€Ç1
 R
-java:S1481"0Remove this unused "idGenerator" local variable.(†€ÀÅúÿÿÿÿ8³ßıùÆ1
+java:S1481"0Remove this unused "idGenerator" local variable.(†€ÀÅúÿÿÿÿ8Ñî‚€Ç1
 T
-java:S1128"7Remove this unused import 'org.pluppert.models.Person'.(³ö³8ÃÕ€úÆ1
+java:S1128"7Remove this unused import 'org.pluppert.models.Person'.(³ö³8Öî‚€Ç1
 V
-java:S1128"9Remove this unused import 'org.pluppert.models.TodoItem'.(ÕÏ¦§8ÃÕ€úÆ1
+java:S1128"9Remove this unused import 'org.pluppert.models.TodoItem'.(ÕÏ¦§8Öî‚€Ç1
 Z
-java:S1128"=Remove this unused import 'org.pluppert.models.TodoItemTask'.(½›×‚8ÃÕ€úÆ1
+java:S1128"=Remove this unused import 'org.pluppert.models.TodoItemTask'.(½›×‚8×î‚€Ç1
 R
 java:S1128
-"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8ÄÕ€úÆ1
+"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8×î‚€Ç1
