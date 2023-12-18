@@ -32,7 +32,6 @@ public class AppUser {
 
     private void setPassword(String password) {
         if (utils.invalidPassword(password)) throw new IllegalArgumentException("Invalid password");
-        System.out.println("password = GREAT SUCCESS!!!");
         this.password = password;
     }
 

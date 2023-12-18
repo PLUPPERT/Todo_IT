@@ -4,6 +4,7 @@ import org.pluppert.sequencer.IdGenerator;
 import org.pluppert.enums.IdType;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class TodoItem {
     private int id;
@@ -80,7 +81,8 @@ public class TodoItem {
         return getDeadline().isBefore(LocalDate.now());
     }
 
-    public String getSummary() {
+    @Override
+    public String toString() {
         return "TodoItem {\n" +
                     "\tid = '" + getId() + "',\n" +
                     "\ttitle = '" + getTitle() + "',\n" +
@@ -90,5 +92,18 @@ public class TodoItem {
                     "\tcreator = '" + getCreator().getFirstName() + " " + getCreator().getLastName() + "',\n" +
                     "\tisOverdue = " + isOverdue() + ",\n" +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItem todoItem = (TodoItem) o;
+        return id == todoItem.id && done == todoItem.done && Objects.equals(title, todoItem.title) && Objects.equals(taskDescription, todoItem.taskDescription) && Objects.equals(deadline, todoItem.deadline);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, taskDescription, deadline, done);
     }
 }

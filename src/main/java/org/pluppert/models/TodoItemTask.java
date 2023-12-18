@@ -3,6 +3,8 @@ package org.pluppert.models;
 import org.pluppert.sequencer.IdGenerator;
 import org.pluppert.enums.IdType;
 
+import java.util.Objects;
+
 public class TodoItemTask {
     private int id;
     private boolean assigned;
@@ -46,7 +48,8 @@ public class TodoItemTask {
         }
     }
 
-    public String getSummary() {
+    @Override
+    public String toString() {
         String assigneeName = (getAssignee() == null) ? "null" : getAssignee().getFullName();
         return "TodoItemTask {\n" +
                     "\tid = '" + getId() + "',\n" +
@@ -54,5 +57,18 @@ public class TodoItemTask {
                     "\ttodoItem = '" + getTodoItem().getTitle() + "',\n" +
                     "\tassignee = " + assigneeName + ",\n" +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItemTask that = (TodoItemTask) o;
+        return id == that.id && assigned == that.assigned && Objects.equals(todoItem, that.todoItem);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, assigned, todoItem);
     }
 }

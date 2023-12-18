@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.pluppert.models.Person;
-import org.pluppert.models.TodoItem;
 import org.pluppert.sequencer.IdGenerator;
 
 import java.time.LocalDate;
@@ -134,6 +132,6 @@ class TestTodoItem {
                 "\tisOverdue = " + item.isOverdue() + ",\n" +
                 '}';
 
-        assertEquals(expectedString, item.getSummary());
+        assertEquals(expectedString, item.toString());
     }
 }

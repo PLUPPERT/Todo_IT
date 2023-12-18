@@ -3,9 +3,6 @@ package org.pluppert.models;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.pluppert.models.Person;
-import org.pluppert.models.TodoItem;
-import org.pluppert.models.TodoItemTask;
 import org.pluppert.sequencer.IdGenerator;
 
 import java.time.LocalDate;
@@ -94,6 +91,6 @@ class TestTodoItemTask {
                 "\tassignee = " + assigneeName + ",\n" +
                 '}';
 
-        assertEquals(expectedString, task.getSummary());
+        assertEquals(expectedString, task.toString());
     }
 }
