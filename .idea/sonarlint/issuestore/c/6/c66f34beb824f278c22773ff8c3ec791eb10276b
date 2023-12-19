@@ -1,14 +1,18 @@
 
-a
-java:S1854"?Remove this useless assignment to local variable "idGenerator".(ÜÄ¿≈˙ˇˇˇˇ8ÃÓÇÄ«1
-R
-java:S1481"0Remove this unused "idGenerator" local variable.(ÜÄ¿≈˙ˇˇˇˇ8—ÓÇÄ«1
-T
-java:S1128"7Remove this unused import 'org.pluppert.models.Person'.(ù≥ˆ≥8÷ÓÇÄ«1
+g	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(“Ç“È¸ˇˇˇˇ8Ú≤±å»1
+X
+java:S1854>";Remove this useless assignment to local variable "appUser".(ô·‘°8Å≥±å»1
+[
+java:S1854<"9Remove this useless assignment to local variable "task3".(¡∆ƒæ˝ˇˇˇˇ8Å≥±å»1
 V
-java:S1128"9Remove this unused import 'org.pluppert.models.TodoItem'.(’œ¶ß8÷ÓÇÄ«1
-Z
-java:S1128"=Remove this unused import 'org.pluppert.models.TodoItemTask'.(Ωõ◊Ç8◊ÓÇÄ«1
-R
-java:S1128
-"0Remove this unused import 'java.time.LocalDate'.(õë¨Ë˝ˇˇˇˇ8◊ÓÇÄ«1
+java:S1854;"9Remove this useless assignment to local variable "task2".(◊©∞Ñ8Ç≥±å»1
+[
+java:S1854:"9Remove this useless assignment to local variable "task1".(©≥Â¡˚ˇˇˇˇ8Ç≥±å»1
+L
+java:S1481:"*Remove this unused "task1" local variable.(©≥Â¡˚ˇˇˇˇ8è≥±å»1
+G
+java:S1481;"*Remove this unused "task2" local variable.(◊©∞Ñ8è≥±å»1
+L
+java:S1481<"*Remove this unused "task3" local variable.(¡∆ƒæ˝ˇˇˇˇ8è≥±å»1
+I
+java:S1481>",Remove this unused "appUser" local variable.(ô·‘°8ê≥±å»1

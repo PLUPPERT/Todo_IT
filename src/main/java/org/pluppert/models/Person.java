@@ -1,7 +1,9 @@
 package org.pluppert.models;
 
+import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.IdGenerator;
 import org.pluppert.enums.IdType;
+import org.pluppert.utils.Utils;
 
 import java.util.Objects;
 
@@ -11,8 +13,9 @@ public class Person {
     private String lastName;
     private String email;
     private AppUser credentials;
+    private Utils utils = new Utils();
 
-    public Person(String firstName, String lastName, String email, IdGenerator idGenerator, AppUser credentials) {
+    public Person(String firstName, String lastName, String email, AppUser credentials, IdGenerator idGenerator) {
         setId(idGenerator.getGeneratedId(IdType.PERSON));
         setFirstName(firstName);
         setLastName(lastName);
@@ -32,7 +35,7 @@ public class Person {
         return firstName;
     }
 
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         if (firstName == null) throw new IllegalArgumentException("Not allowed to set first name to 'null'");
         this.firstName = firstName;
     }
@@ -41,7 +44,7 @@ public class Person {
         return lastName;
     }
 
-    private void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         if (lastName == null) throw new IllegalArgumentException("Not allowed to set last name to 'null'");
         this.lastName = lastName;
     }
@@ -50,7 +53,7 @@ public class Person {
         return email;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         if (email == null) throw new IllegalArgumentException("Not allowed to set email to 'null'");
         this.email = email;
     }
@@ -78,7 +81,10 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id == person.id && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(email, person.email);
+        return id == person.id &&
+                Objects.equals(firstName, person.firstName) &&
+                Objects.equals(lastName, person.lastName) &&
+                Objects.equals(email, person.email);
     }
 
     @Override
@@ -89,6 +95,19 @@ public class Person {
     public String getFullName() {
         return getFirstName() + " " + getLastName();
     }
-}
 
+    public void updatePersonData(String firstName, String lastName, String email, Person person) throws IllegalAccessException {
+        if (!hasUserRights(person)) throw new IllegalAccessException("User does not have the rights to update the data of this Person object");
+        person.setFirstName(utils.isNullOrEmpty(firstName) ? person.getFirstName() : firstName);
+        person.setLastName(utils.isNullOrEmpty(lastName) ? person.getLastName() : lastName);
+        person.setEmail(utils.isNullOrEmpty(email) ? person.getEmail() : email);
+    }
+
+    public boolean hasUserRights(Person person) {
+        if (this.credentials.getRole() == AppRole.ROLE_APP_ADMIN) {
+            return true;
+        }
+        return equals(person) && (person.getCredentials().getRole() == AppRole.ROLE_APP_USER);
+    }
+}
 

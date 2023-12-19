@@ -3,6 +3,7 @@ package org.pluppert.models;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.IdGenerator;
 
 import java.time.LocalDate;
@@ -19,7 +20,11 @@ class TestTodoItemTask {
     @BeforeEach
     public void init() {
         LocalDate deadline = LocalDate.parse("2028-03-29");
-        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", idGenerator);
+        this.person = new Person("Bosse",
+                "Startplugg",
+                "bosse@gmailus.com",
+                new AppUser("NewNewMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_ADMIN),
+                idGenerator);
         this.item = new TodoItem(
                 "Starta en hamsterklubb",
                 "Skapa en klubb för alla som älskar att skryta om sin hamster",
@@ -76,7 +81,11 @@ class TestTodoItemTask {
     }
     @Test
     void notAbleToSetAssigneeToTaskAlreadyAssigned() {
-        Person newAssignee = new Person("Maggan", "Stoppkloss", "maggan@gmaggalicious.xoxo", idGenerator);
+        Person newAssignee = new Person("Maggan",
+                "Stoppkloss",
+                "maggan@gmaggalicious.xoxo",
+                new AppUser("EvenNewerMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_USER),
+                idGenerator);
         task.setAssignee(person);
         task.setAssignee(newAssignee);
         assertNotEquals(newAssignee, task.getAssignee());

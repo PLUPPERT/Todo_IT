@@ -5,16 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.pluppert.models.Person;
+import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.IdGenerator;
 
 class TestPerson {
     Person person;
+    AppUser user;
+    AppRole role;
     IdGenerator idGenerator = new IdGenerator();
 
     @BeforeEach
     public void init() {
-        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", idGenerator);
+        this.role = AppRole.ROLE_APP_USER;
+        this.user = new AppUser("userUser", "aAbcD@59", role);
+        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", user, idGenerator);
     }
     @Test
     void canGetId() {
@@ -101,7 +105,7 @@ class TestPerson {
         Assertions.assertEquals("Not allowed to set email to 'null'", thrown.getMessage());
     }
     @Test
-    void getSummaryReturnsCorrectString() {
+    void toStringReturnsCorrectString() {
         String expectedString = "Person {\n" +
                 "\tid = " + person.getId() + "," +
                 "\t'firstName = '" + person.getFirstName() + "',\n" +
@@ -109,6 +113,6 @@ class TestPerson {
                 "\temail ='" + person.getEmail() + "'\n" +
                 '}';
 
-        assertEquals(expectedString, person.getSummary());
+        assertEquals(expectedString, person.toString());
     }
 }

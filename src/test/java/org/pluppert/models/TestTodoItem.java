@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.IdGenerator;
 
 import java.time.LocalDate;
@@ -16,7 +17,11 @@ class TestTodoItem {
     @BeforeEach
     public void init() {
         LocalDate deadline = LocalDate.parse("2028-03-29");
-        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", idGenerator);
+        this.person = new Person("Bosse",
+                "Startplugg",
+                "bosse@gmailus.com",
+                new AppUser("NewNewMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_ADMIN),
+                idGenerator);
         this.item = new TodoItem("Item 1", "Do whatever, I don't care...", deadline, person, idGenerator);
     }
 
