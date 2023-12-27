@@ -10,12 +10,12 @@ import org.pluppert.sequencer.IdGenerator;
 
 import java.time.LocalDate;
 
-class TestTodoItem {
+class TodoItemTest {
     TodoItem item;
     Person person;
     IdGenerator idGenerator = new IdGenerator();
     @BeforeEach
-    public void init() {
+    public void setUp() {
         LocalDate deadline = LocalDate.parse("2028-03-29");
         this.person = new Person("Bosse",
                 "Startplugg",

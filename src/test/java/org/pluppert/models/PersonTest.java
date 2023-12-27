@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.IdGenerator;
 
-class TestPerson {
+class PersonTest {
     Person person;
     AppUser user;
     AppRole role;
     IdGenerator idGenerator = new IdGenerator();
 
     @BeforeEach
-    public void init() {
+    public void setUp() {
         this.role = AppRole.ROLE_APP_USER;
         this.user = new AppUser("userUser", "aAbcD@59", role);
         this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", user, idGenerator);

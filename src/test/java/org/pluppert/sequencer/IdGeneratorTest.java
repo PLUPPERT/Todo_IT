@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestIdGenerator {
+class IdGeneratorTest {
     Person person;
     TodoItem item;
     TodoItemTask task;

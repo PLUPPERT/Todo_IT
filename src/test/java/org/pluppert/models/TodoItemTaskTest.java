@@ -11,14 +11,14 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class TestTodoItemTask {
+class TodoItemTaskTest {
     TodoItemTask task;
     TodoItem item;
     Person person;
     IdGenerator idGenerator = new IdGenerator();
 
     @BeforeEach
-    public void init() {
+    public void setUp() {
         LocalDate deadline = LocalDate.parse("2028-03-29");
         this.person = new Person("Bosse",
                 "Startplugg",

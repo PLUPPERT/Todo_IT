@@ -99,7 +99,11 @@ public class TodoItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TodoItem todoItem = (TodoItem) o;
-        return id == todoItem.id && done == todoItem.done && Objects.equals(title, todoItem.title) && Objects.equals(taskDescription, todoItem.taskDescription) && Objects.equals(deadline, todoItem.deadline);
+        return id == todoItem.id &&
+                done == todoItem.done &&
+                Objects.equals(title, todoItem.title) &&
+                Objects.equals(taskDescription, todoItem.taskDescription) &&
+                Objects.equals(deadline, todoItem.deadline);
     }
 
     @Override

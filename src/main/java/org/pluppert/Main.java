@@ -5,7 +5,7 @@ import org.pluppert.models.AppUser;
 import org.pluppert.models.Person;
 import org.pluppert.models.TodoItem;
 import org.pluppert.models.TodoItemTask;
-import org.pluppert.repositories.PersonRepo;
+import org.pluppert.repositories.MockPersonRepo;
 import org.pluppert.sequencer.IdGenerator;
 
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         IdGenerator idGenerator = new IdGenerator();
-        PersonRepo personRepo = new PersonRepo();
+        MockPersonRepo personRepo = new MockPersonRepo();
 
         personRepo.addPersonToRepo(
                 new Person(

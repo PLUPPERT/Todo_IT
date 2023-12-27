@@ -8,11 +8,11 @@ import org.pluppert.sequencer.IdGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonRepo {
+public class MockPersonRepo {
     private static final IdGenerator idGenerator = new IdGenerator();
     private final ArrayList<Person> people = new ArrayList<>();
 
-    public PersonRepo() {
+    public MockPersonRepo() {
         AppUser user1 = new AppUser("user1", "1djvfhgdQQ36?", AppRole.ROLE_APP_USER);
         AppUser user2 = new AppUser("user2", "2djvfhgdQQ36?", AppRole.ROLE_APP_USER);
         AppUser user3 = new AppUser("user3", "3djvfhgdQQ36?", AppRole.ROLE_APP_ADMIN);
