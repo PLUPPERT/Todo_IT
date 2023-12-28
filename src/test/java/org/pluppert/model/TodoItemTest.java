@@ -1,4 +1,4 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,16 +13,15 @@ import java.time.LocalDate;
 class TodoItemTest {
     TodoItem item;
     Person person;
-    IdGenerator idGenerator = new IdGenerator();
     @BeforeEach
     public void setUp() {
+        IdGenerator.resetItemIdCounter();
         LocalDate deadline = LocalDate.parse("2028-03-29");
         this.person = new Person("Bosse",
                 "Startplugg",
                 "bosse@gmailus.com",
-                new AppUser("NewNewMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_ADMIN),
-                idGenerator);
-        this.item = new TodoItem("Item 1", "Do whatever, I don't care...", deadline, person, idGenerator);
+                new AppUser("NewNewMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_ADMIN));
+        this.item = new TodoItem("Item 1", "Do whatever, I don't care...", deadline, person);
     }
 
     @Test
@@ -114,7 +113,7 @@ class TodoItemTest {
                 IllegalArgumentException.class,
                 () -> {
                     //Code under test
-                    new TodoItem("Item 1", "Do whatever, I don't care...", item.getDeadline(), null, idGenerator);
+                    new TodoItem("Item 1", "Do whatever, I don't care...", item.getDeadline(), null);
                 }, "Creator parameter was 'null' : IllegalArgumentException was expected\n");
 
         Assertions.assertEquals("Creator can't be set to 'null'", thrownByNull.getMessage());

@@ -1,4 +1,4 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import org.pluppert.sequencer.IdGenerator;
 import org.pluppert.enums.IdType;
@@ -14,8 +14,8 @@ public class TodoItem {
     private boolean done;
     private Person creator;
 
-    public TodoItem(String title, String taskDescription, LocalDate deadline, Person creator, IdGenerator idGenerator) {
-        setId(idGenerator.getGeneratedId(IdType.ITEM));
+    public TodoItem(String title, String taskDescription, LocalDate deadline, Person creator) {
+        setId(IdGenerator.getInstance().getGeneratedId(IdType.ITEM));
         setTitle(title);
         setCreator(creator);
         setTaskDescription((taskDescription == null) ? "" : taskDescription);

@@ -1,4 +1,4 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +23,7 @@ class AppUserTest {
 
     @Test
     void getRole() {
-        Assertions.assertEquals(AppRole.ROLE_APP_USER, appUser.getRole());
+        Assertions.assertEquals(AppRole.ROLE_APP_ADMIN, appAdmin.getRole());
     }
 
 }

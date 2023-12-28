@@ -1,4 +1,4 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import org.pluppert.sequencer.IdGenerator;
 import org.pluppert.enums.IdType;
@@ -11,8 +11,8 @@ public class TodoItemTask {
     private TodoItem todoItem;
     private Person assignee;
 
-    public TodoItemTask(TodoItem todoItem, Person assignee, IdGenerator idGenerator) {
-        setId(idGenerator.getGeneratedId(IdType.TASK));
+    public TodoItemTask(TodoItem todoItem, Person assignee) {
+        setId(IdGenerator.getInstance().getGeneratedId(IdType.TASK));
         setTodoItem(todoItem);
         setAssignee(assignee);
     }

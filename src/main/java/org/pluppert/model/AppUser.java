@@ -1,4 +1,4 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import org.pluppert.enums.AppRole;
 import org.pluppert.utils.Utils;

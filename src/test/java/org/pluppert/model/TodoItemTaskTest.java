@@ -1,4 +1,4 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,24 +15,22 @@ class TodoItemTaskTest {
     TodoItemTask task;
     TodoItem item;
     Person person;
-    IdGenerator idGenerator = new IdGenerator();
 
     @BeforeEach
     public void setUp() {
+        IdGenerator.resetTaskIdCounter();
         LocalDate deadline = LocalDate.parse("2028-03-29");
         this.person = new Person("Bosse",
                 "Startplugg",
                 "bosse@gmailus.com",
-                new AppUser("NewNewMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_ADMIN),
-                idGenerator);
+                new AppUser("NewNewMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_ADMIN));
         this.item = new TodoItem(
                 "Starta en hamsterklubb",
                 "Skapa en klubb för alla som älskar att skryta om sin hamster",
                 deadline,
-                person,
-                idGenerator
+                person
         );
-        this.task = new TodoItemTask(item, null, idGenerator);
+        this.task = new TodoItemTask(item, null);
     }
 
     @Test
@@ -62,7 +60,7 @@ class TodoItemTaskTest {
                 IllegalArgumentException.class,
                 () -> {
                     //Code under test
-                    new TodoItemTask(null, null, idGenerator);
+                    new TodoItemTask(null, null);
                 }, "TodoItem parameter was 'null' : IllegalArgumentException was expected\n");
 
         Assertions.assertEquals("TodoItem can't be set to 'null'", thrownByNull.getMessage());
@@ -84,8 +82,7 @@ class TodoItemTaskTest {
         Person newAssignee = new Person("Maggan",
                 "Stoppkloss",
                 "maggan@gmaggalicious.xoxo",
-                new AppUser("EvenNewerMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_USER),
-                idGenerator);
+                new AppUser("EvenNewerMon", "nEwPoKeBoY2000!", AppRole.ROLE_APP_USER));
         task.setAssignee(person);
         task.setAssignee(newAssignee);
         assertNotEquals(newAssignee, task.getAssignee());

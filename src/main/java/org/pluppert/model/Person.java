@@ -1,4 +1,4 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.IdGenerator;
@@ -13,10 +13,10 @@ public class Person {
     private String lastName;
     private String email;
     private AppUser credentials;
-    private Utils utils = new Utils();
+    private final Utils utils = new Utils();
 
-    public Person(String firstName, String lastName, String email, AppUser credentials, IdGenerator idGenerator) {
-        setId(idGenerator.getGeneratedId(IdType.PERSON));
+    public Person(String firstName, String lastName, String email, AppUser credentials) {
+        setId(IdGenerator.getInstance().getGeneratedId(IdType.PERSON));
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);

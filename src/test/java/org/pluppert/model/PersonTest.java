@@ -1,7 +1,8 @@
-package org.pluppert.models;
+package org.pluppert.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,13 +13,13 @@ class PersonTest {
     Person person;
     AppUser user;
     AppRole role;
-    IdGenerator idGenerator = new IdGenerator();
 
     @BeforeEach
     public void setUp() {
+        IdGenerator.resetPersonIdCounter();
         this.role = AppRole.ROLE_APP_USER;
         this.user = new AppUser("userUser", "aAbcD@59", role);
-        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", user, idGenerator);
+        this.person = new Person("Bosse", "Startplugg", "bosse@gmailus.com", user);
     }
     @Test
     void canGetId() {
@@ -114,5 +115,6 @@ class PersonTest {
                 '}';
 
         assertEquals(expectedString, person.toString());
+
     }
 }
