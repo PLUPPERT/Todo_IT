@@ -26,7 +26,7 @@ public class AppUserImpl implements AppUserDAO {
 
     @Override
     public AppUser findByUsername(String username) {
-        return appUserList.stream()
+        return findAll().stream()
                 .filter(appUser -> appUser.getUsername().equals(username))
                 .findAny().orElse(null);
     }
@@ -40,11 +40,11 @@ public class AppUserImpl implements AppUserDAO {
 
     @Override
     public Collection<AppUser> findAll() {
-        return appUserList;
+        return List.copyOf(appUserList);
     }
 
     @Override
-    public void remove(AppUser value) {
-        appUserList.remove(value);
+    public void remove(String username) {
+        appUserList.remove(findByUsername(username));
     }
 }

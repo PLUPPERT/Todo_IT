@@ -1,5 +1,8 @@
 package org.pluppert.data;
 
-public interface PersonDAO extends BaseDAO {
+import org.pluppert.model.Person;
 
+public interface PersonDAO extends BaseDAO<Person, Integer> {
+    Person findById(int id);
+    Person findByEmail(String email);
 }
