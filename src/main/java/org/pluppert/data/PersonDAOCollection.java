@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class PersonImpl implements PersonDAO {
+public class PersonDAOCollection implements PersonDAO {
     private static final PersonDAO INSTANCE;
 
     static {
-        INSTANCE = new PersonImpl();
+        INSTANCE = new PersonDAOCollection();
     }
 
     private final List<Person> personList;
 
-    private PersonImpl() {
+    private PersonDAOCollection() {
         personList = new ArrayList<>();
     }
 

@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class AppUserImpl implements AppUserDAO {
+public class AppUserDAOCollection implements AppUserDAO {
 
     private static final AppUserDAO INSTANCE;
 
     static {
-        INSTANCE = new AppUserImpl();
+        INSTANCE = new AppUserDAOCollection();
     }
 
     private final List<AppUser> appUserList;
 
-    private AppUserImpl() {
+    private AppUserDAOCollection() {
         appUserList = new ArrayList<>();
     }
 
