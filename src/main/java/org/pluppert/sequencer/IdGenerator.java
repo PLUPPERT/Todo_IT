@@ -3,20 +3,23 @@ package org.pluppert.sequencer;
 import org.pluppert.enums.IdType;
 
 public class IdGenerator {
-    private static IdGenerator instance;
+    private static volatile IdGenerator instance = null;
     private static int personId;
     private static int itemId;
     private static int taskId;
 
-    private IdGenerator() {
-    }
+    private IdGenerator() {}
 
     public static IdGenerator getInstance() {
         if (instance == null) {
-            instance = new IdGenerator();
-            personId = 0;
-            itemId = 0;
-            taskId = 0;
+            synchronized (IdGenerator.class) {
+                if (instance == null) {
+                    instance = new IdGenerator();
+                    personId = 0;
+                    itemId = 0;
+                    taskId = 0;
+                }
+            }
         }
         return instance;
     }
@@ -25,37 +28,24 @@ public class IdGenerator {
         return switch (idType) {
             case PERSON -> {
                 setPersonId(idGen.generateId(personId));
-                yield getPersonId();
+                yield personId;
             }
             case ITEM -> {
                 setItemId(idGen.generateId(itemId));
-                yield getItemId();
+                yield itemId;
             }
             case TASK -> {
                 setTaskId(idGen.generateId(taskId));
-                yield getTaskId();
+                yield taskId;
             }
         };
     }
-
-    private static int getPersonId() {
-        return personId;
-    }
-
     private static void setPersonId(int personId) {
         IdGenerator.personId = personId;
     }
 
-    private static int getItemId() {
-        return itemId;
-    }
-
     private static void setItemId(int itemId) {
         IdGenerator.itemId = itemId;
-    }
-
-    private static int getTaskId() {
-        return taskId;
     }
 
     private static void setTaskId(int taskId) {
@@ -70,7 +60,6 @@ public class IdGenerator {
     public static void resetItemIdCounter() {
         itemId = 0;
     }
-
 }
 
 @FunctionalInterface
