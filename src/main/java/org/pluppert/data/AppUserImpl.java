@@ -32,10 +32,10 @@ public class AppUserImpl implements AppUserDAO {
     }
 
     @Override
-    public Object persist(Object value) {
-        if ((value == null) || (value.getClass() == AppUser.class)) throw new NullPointerException("value is null or wrong object type");
-        appUserList.add((AppUser) value);
-        return value;
+    public AppUser persist(AppUser appUser) {
+        if (appUser == null) throw new NullPointerException("appUser is null");
+        appUserList.add(appUser);
+        return appUser;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class AppUserImpl implements AppUserDAO {
     }
 
     @Override
-    public void remove(Object value) {
-
+    public void remove(AppUser value) {
+        appUserList.remove(value);
     }
 }
