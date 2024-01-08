@@ -73,6 +73,7 @@ public class Person {
                 "\t'firstName = '" + getFirstName() + "',\n" +
                 "\tlastName = '" + getLastName() + "',\n" +
                 "\temail ='" + getEmail() + "'\n" +
+                "\tcredentials ='" + getCredentials() + "'\n" +
                 '}';
     }
 

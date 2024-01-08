@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonDAOCollectionTest {
-
+    PersonDAO INSTANCE;
     @BeforeEach
     void setUp() {
-
+        INSTANCE = PersonDAOCollection.getInstance();
     }
     @Test
     void getInstance() {

@@ -9,7 +9,7 @@ public class AppUser {
     private String username;
     private String password;
     private AppRole role;
-    Utils utils = new Utils();
+    private final Utils utils = new Utils();
 
     public AppUser(String username, String password, AppRole role) {
         setUsername(username);
