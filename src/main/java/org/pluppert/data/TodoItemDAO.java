@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 public interface TodoItemDAO extends BaseDAO<TodoItem, Integer> {
+    TodoItemDAO INSTANCE = TodoItemDAOCollection.getInstance();
     TodoItem findById(int id);
     Collection<TodoItem> findAllByDoneStatus(boolean done);
     Collection<TodoItem> findByTitleContains(String title);
