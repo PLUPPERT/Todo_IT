@@ -9,8 +9,8 @@ class PersonDAOCollectionTest {
 
     @BeforeEach
     void setUp() {
-    }
 
+    }
     @Test
     void getInstance() {
     }

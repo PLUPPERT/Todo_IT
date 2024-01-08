@@ -44,13 +44,13 @@ public class PersonDAOCollection implements PersonDAO {
     public Person findById(int id) {
         return findAll().stream()
                 .filter(person -> person.getId() == id)
-                .findAny().orElse(null);
+                .findFirst().orElse(null);
     }
 
     @Override
     public Person findByEmail(String email) {
         return findAll().stream()
                 .filter(person -> person.getEmail().equals(email))
-                .findAny().orElse(null);
+                .findFirst().orElse(null);
     }
 }
