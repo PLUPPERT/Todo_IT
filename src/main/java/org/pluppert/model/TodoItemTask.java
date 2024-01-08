@@ -1,7 +1,6 @@
 package org.pluppert.model;
 
-import org.pluppert.sequencer.IdGenerator;
-import org.pluppert.enums.IdType;
+import org.pluppert.sequencer.TodoItemTaskIdSequencer;
 
 import java.util.Objects;
 
@@ -10,9 +9,10 @@ public class TodoItemTask {
     private boolean assigned;
     private TodoItem todoItem;
     private Person assignee;
+    private static final TodoItemTaskIdSequencer idGen = TodoItemTaskIdSequencer.getInstance();
 
     public TodoItemTask(TodoItem todoItem, Person assignee) {
-        setId(IdGenerator.getInstance().getGeneratedId(IdType.TASK));
+        setId(idGen.nextId());
         setTodoItem(todoItem);
         setAssignee(assignee);
     }

@@ -1,7 +1,6 @@
 package org.pluppert.model;
 
-import org.pluppert.sequencer.IdGenerator;
-import org.pluppert.enums.IdType;
+import org.pluppert.sequencer.TodoItemIdSequencer;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -13,9 +12,10 @@ public class TodoItem {
     private LocalDate deadline;
     private boolean done;
     private Person creator;
+    private static final TodoItemIdSequencer idGen = TodoItemIdSequencer.getInstance();
 
     public TodoItem(String title, String taskDescription, LocalDate deadline, Person creator) {
-        setId(IdGenerator.getInstance().getGeneratedId(IdType.ITEM));
+        setId(idGen.nextId());
         setTitle(title);
         setCreator(creator);
         setTaskDescription((taskDescription == null) ? "" : taskDescription);

@@ -6,16 +6,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.pluppert.enums.AppRole;
-import org.pluppert.sequencer.IdGenerator;
+import org.pluppert.sequencer.TodoItemIdSequencer;
 
 import java.time.LocalDate;
 
 class TodoItemTest {
     TodoItem item;
     Person person;
+    TodoItemIdSequencer idGen = TodoItemIdSequencer.getInstance();
     @BeforeEach
     public void setUp() {
-        IdGenerator.resetItemIdCounter();
+        idGen.setCurrentId(0);
         LocalDate deadline = LocalDate.parse("2028-03-29");
         this.person = new Person("Bosse",
                 "Startplugg",

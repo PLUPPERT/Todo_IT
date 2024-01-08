@@ -3,7 +3,6 @@ package org.pluppert.sequencer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.pluppert.enums.AppRole;
-import org.pluppert.enums.IdType;
 import org.pluppert.model.AppUser;
 import org.pluppert.model.Person;
 import org.pluppert.model.TodoItem;
@@ -13,21 +12,26 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class IdGeneratorTest {
+class IdSequencersTest {
     Person person;
     TodoItem item;
     TodoItemTask task;
+    PersonIdSequencer idGenPerson = PersonIdSequencer.getInstance();
+    TodoItemIdSequencer idGenItem = TodoItemIdSequencer.getInstance();
+    TodoItemTaskIdSequencer idGenTask = TodoItemTaskIdSequencer.getInstance();
 
     @BeforeEach
     void setUp() {
-        IdGenerator.resetPersonIdCounter();
+        idGenPerson.setCurrentId(0);
+        idGenItem.setCurrentId(0);
+        idGenTask.setCurrentId(0);
     }
 
     @Test
     void incrementsPersonId() {
         int expectedId = 3;
-        IdGenerator.getInstance().getGeneratedId(IdType.PERSON);
-        IdGenerator.getInstance().getGeneratedId(IdType.PERSON);
+        idGenPerson.nextId();
+        idGenPerson.nextId();
         person = new Person(
                 "Mjau",
                 "Kattsson",
@@ -38,8 +42,8 @@ class IdGeneratorTest {
     @Test
     void incrementsItemId() {
         int expectedId = 3;
-        IdGenerator.getInstance().getGeneratedId(IdType.ITEM);
-        IdGenerator.getInstance().getGeneratedId(IdType.ITEM);
+        idGenItem.nextId();
+        idGenItem.nextId();
         person = new Person(
                 "Mjau",
                 "Kattsson",
@@ -55,8 +59,8 @@ class IdGeneratorTest {
     @Test
     void incrementsTaskId() {
         int expectedId = 3;
-        IdGenerator.getInstance().getGeneratedId(IdType.TASK);
-        IdGenerator.getInstance().getGeneratedId(IdType.TASK);
+        idGenTask.nextId();
+        idGenTask.nextId();
         person = new Person(
                 "Mjau",
                 "Kattsson",
