@@ -2,7 +2,7 @@ package org.pluppert.sequencer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.pluppert.enums.AppRole;
+import org.pluppert.model.AppRole;
 import org.pluppert.model.AppUser;
 import org.pluppert.model.Person;
 import org.pluppert.model.TodoItem;

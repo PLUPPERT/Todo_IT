@@ -22,11 +22,11 @@ public class JsonWriter {
     public void write(List<Object> listToWrite) throws IOException {
         String filePath;
         switch (listToWrite.getFirst().getClass().getSimpleName()) {
-            case "AppUser" -> { filePath = "src/main/resources/protocols/app_user.json"; }
-            case "Person" -> { filePath = "src/main/resources/protocols/person.json";}
-            case "TodoItem" -> { filePath = "src/main/resources/protocols/todo_item.json";}
-            case "TodoItemTask" -> { filePath = "src/main/resources/protocols/todo_item_task.json";}
-            default -> { filePath = "";}
+            case "AppUser" ->  filePath = "src/main/resources/protocols/app_user.json";
+            case "Person" ->  filePath = "src/main/resources/protocols/person.json";
+            case "TodoItem" ->  filePath = "src/main/resources/protocols/todo_item.json";
+            case "TodoItemTask" ->  filePath = "src/main/resources/protocols/todo_item_task.json";
+            default ->  filePath = "";
         }
         Writer writer = new FileWriter(filePath);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

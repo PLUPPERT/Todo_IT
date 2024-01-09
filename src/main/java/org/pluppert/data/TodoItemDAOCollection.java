@@ -3,7 +3,6 @@ package org.pluppert.data;
 import org.pluppert.data.serializer.JsonReader;
 import org.pluppert.data.serializer.JsonWriter;
 import org.pluppert.data.serializer.ObjectType;
-import org.pluppert.model.Person;
 import org.pluppert.model.TodoItem;
 
 import java.io.IOException;

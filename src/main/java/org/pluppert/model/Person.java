@@ -1,6 +1,5 @@
 package org.pluppert.model;
 
-import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.PersonIdSequencer;
 import org.pluppert.utils.Utils;
 

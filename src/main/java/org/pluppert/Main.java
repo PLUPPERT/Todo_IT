@@ -4,7 +4,7 @@ import org.pluppert.data.AppUserDAO;
 import org.pluppert.data.PersonDAO;
 import org.pluppert.data.TodoItemDAO;
 import org.pluppert.data.TodoItemTaskDAO;
-import org.pluppert.enums.AppRole;
+import org.pluppert.model.AppRole;
 import org.pluppert.model.AppUser;
 import org.pluppert.model.Person;
 

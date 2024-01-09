@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.pluppert.enums.AppRole;
 import org.pluppert.sequencer.TodoItemIdSequencer;
 
 import java.time.LocalDate;
