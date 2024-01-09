@@ -9,7 +9,6 @@ public class AppUser {
     private String username;
     private String password;
     private AppRole role;
-    private final Utils utils = new Utils();
 
     public AppUser(String username, String password, AppRole role) {
         setUsername(username);
@@ -22,7 +21,7 @@ public class AppUser {
     }
 
     private void setUsername(String username) {
-        if (utils.isNullOrEmpty(username)) throw new IllegalArgumentException("Username cannot be null or empty");
+        if (Utils.inst.isNullOrEmpty(username)) throw new IllegalArgumentException("Username cannot be null or empty");
         this.username = username;
     }
 
@@ -31,7 +30,7 @@ public class AppUser {
     }
 
     private void setPassword(String password) {
-        if (utils.invalidPassword(password)) throw new IllegalArgumentException("Invalid password");
+        if (Utils.inst.invalidPassword(password)) throw new IllegalArgumentException("Invalid password");
         this.password = password;
     }
 

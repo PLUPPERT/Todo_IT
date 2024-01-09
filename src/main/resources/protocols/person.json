@@ -7,10 +7,8 @@
     "credentials": {
       "username": "KattFan",
       "password": "böLLeBö!12",
-      "role": "ROLE_APP_USER",
-      "utils": {}
-    },
-    "utils": {}
+      "role": "ROLE_APP_USER"
+    }
   },
   {
     "id": 2,
@@ -20,10 +18,8 @@
     "credentials": {
       "username": "HundFan",
       "password": "böLLeBö!13",
-      "role": "ROLE_APP_USER",
-      "utils": {}
-    },
-    "utils": {}
+      "role": "ROLE_APP_USER"
+    }
   },
   {
     "id": 3,
@@ -33,10 +29,8 @@
     "credentials": {
       "username": "RåttFan",
       "password": "böLLeBö!14",
-      "role": "ROLE_APP_ADMIN",
-      "utils": {}
-    },
-    "utils": {}
+      "role": "ROLE_APP_ADMIN"
+    }
   },
   {
     "id": 4,
@@ -46,9 +40,7 @@
     "credentials": {
       "username": "GubbFan",
       "password": "böLLeBö!15",
-      "role": "ROLE_APP_ADMIN",
-      "utils": {}
-    },
-    "utils": {}
+      "role": "ROLE_APP_ADMIN"
+    }
   }
 ]

@@ -2,25 +2,21 @@
   {
     "username": "KattFan",
     "password": "böLLeBö!12",
-    "role": "ROLE_APP_USER",
-    "utils": {}
+    "role": "ROLE_APP_USER"
   },
   {
     "username": "HundFan",
     "password": "böLLeBö!13",
-    "role": "ROLE_APP_USER",
-    "utils": {}
+    "role": "ROLE_APP_USER"
   },
   {
     "username": "RåttFan",
     "password": "böLLeBö!14",
-    "role": "ROLE_APP_ADMIN",
-    "utils": {}
+    "role": "ROLE_APP_ADMIN"
   },
   {
     "username": "GubbFan",
     "password": "böLLeBö!15",
-    "role": "ROLE_APP_ADMIN",
-    "utils": {}
+    "role": "ROLE_APP_ADMIN"
   }
 ]

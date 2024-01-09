@@ -12,7 +12,6 @@ public class Person {
     private String lastName;
     private String email;
     private AppUser credentials;
-    private final Utils utils = new Utils();
     private static final PersonIdSequencer idGen = PersonIdSequencer.getInstance();
 
     public Person(String firstName, String lastName, String email, AppUser credentials) {
@@ -99,9 +98,9 @@ public class Person {
 
     public void updatePersonData(String firstName, String lastName, String email, Person person) throws IllegalAccessException {
         if (!hasUserRights(person)) throw new IllegalAccessException("User does not have the rights to update the data of this Person object");
-        person.setFirstName(utils.isNullOrEmpty(firstName) ? person.getFirstName() : firstName);
-        person.setLastName(utils.isNullOrEmpty(lastName) ? person.getLastName() : lastName);
-        person.setEmail(utils.isNullOrEmpty(email) ? person.getEmail() : email);
+        person.setFirstName(Utils.inst.isNullOrEmpty(firstName) ? person.getFirstName() : firstName);
+        person.setLastName(Utils.inst.isNullOrEmpty(lastName) ? person.getLastName() : lastName);
+        person.setEmail(Utils.inst.isNullOrEmpty(email) ? person.getEmail() : email);
     }
 
     public boolean hasUserRights(Person person) {

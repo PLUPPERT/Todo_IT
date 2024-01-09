@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
+    public static final Utils inst = new Utils();
     public boolean isNullOrEmpty(String s) {
         if (s == null) return true;
         return s.isEmpty();

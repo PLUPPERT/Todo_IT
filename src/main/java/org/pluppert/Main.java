@@ -45,7 +45,7 @@ public class Main {
         writerPerson.close();
 
         try (Reader readerUser = new FileReader(pathToUserJson)) {
-            List<AppUser> deserializedUserList = gsonUser.fromJson(readerUser, List.class);
+            List<AppUser> deserializedUserList = gsonUser.fromJson(readerUser, (List.class));
 
 //            deserializedUserList.forEach(System.out::println);
             System.out.println(deserializedUserList);
