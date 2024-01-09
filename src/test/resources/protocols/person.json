@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "firstName": "Mjau",
+    "lastName": "Olsson",
+    "email": "mjau@mjau.crr",
+    "credentials": {
+      "username": "KattFan",
+      "password": "böLLeBö!12",
+      "role": "ROLE_APP_USER"
+    }
+  },
+  {
+    "id": 2,
+    "firstName": "Vov",
+    "lastName": "Vovsson",
+    "email": "vov@vov.grr",
+    "credentials": {
+      "username": "HundFan",
+      "password": "böLLeBö!13",
+      "role": "ROLE_APP_USER"
+    }
+  },
+  {
+    "id": 3,
+    "firstName": "Pip",
+    "lastName": "Pippolo",
+    "email": "rats@darn.it",
+    "credentials": {
+      "username": "RåttFan",
+      "password": "böLLeBö!14",
+      "role": "ROLE_APP_ADMIN"
+    }
+  },
+  {
+    "id": 4,
+    "firstName": "Blö",
+    "lastName": "Gnällsson",
+    "email": "kränkt@äldre.herre",
+    "credentials": {
+      "username": "GubbFan",
+      "password": "böLLeBö!15",
+      "role": "ROLE_APP_ADMIN"
+    }
+  }
+]

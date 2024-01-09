@@ -1,8 +1,12 @@
 package org.pluppert.data;
 
+import org.pluppert.data.serializer.JsonReader;
+import org.pluppert.data.serializer.JsonWriter;
+import org.pluppert.data.serializer.ObjectType;
 import org.pluppert.model.Person;
 import org.pluppert.model.TodoItem;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,6 +45,16 @@ public class TodoItemDAOCollection implements TodoItemDAO {
     @Override
     public void remove(Integer id) {
         todoItemList.remove(findById(id));
+    }
+
+    @Override
+    public Collection<TodoItem> fetchDataFromFile() {
+        return JsonReader.getInstance().read(ObjectType.TODO_ITEM);
+    }
+
+    @Override
+    public void writeDataToFile(Collection<TodoItem> data) throws IOException {
+        JsonWriter.getInstance().write(List.copyOf(data));
     }
 
     @Override

@@ -1,7 +1,11 @@
 package org.pluppert.data;
 
+import org.pluppert.data.serializer.JsonReader;
+import org.pluppert.data.serializer.JsonWriter;
+import org.pluppert.data.serializer.ObjectType;
 import org.pluppert.model.Person;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -38,6 +42,16 @@ public class PersonDAOCollection implements PersonDAO {
     @Override
     public void remove(Integer id) {
         personList.remove(findById(id));
+    }
+
+    @Override
+    public Collection<Person> fetchDataFromFile() {
+        return JsonReader.getInstance().read(ObjectType.PERSON);
+    }
+
+    @Override
+    public void writeDataToFile(Collection<Person> data) throws IOException {
+        JsonWriter.getInstance().write(List.copyOf(data));
     }
 
     @Override

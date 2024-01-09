@@ -1,7 +1,11 @@
 package org.pluppert.data;
 
+import org.pluppert.data.serializer.JsonReader;
+import org.pluppert.data.serializer.JsonWriter;
+import org.pluppert.data.serializer.ObjectType;
 import org.pluppert.model.AppUser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -46,5 +50,15 @@ public class AppUserDAOCollection implements AppUserDAO {
     @Override
     public void remove(String username) {
         appUserList.remove(findByUsername(username));
+    }
+
+    @Override
+    public Collection<AppUser> fetchDataFromFile() {
+        return JsonReader.getInstance().read(ObjectType.APP_USER);
+    }
+
+    @Override
+    public void writeDataToFile(Collection<AppUser> data) throws IOException {
+        JsonWriter.getInstance().write(List.copyOf(data));
     }
 }
