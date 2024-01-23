@@ -3,24 +3,22 @@ package org.pluppert.model;
 import org.pluppert.sequencer.PersonIdSequencer;
 import org.pluppert.utils.Utils;
 
+
+
 import java.util.Objects;
 
 public class Person {
+
     private int id;
     private String firstName;
     private String lastName;
-    private String email;
-    private AppUser credentials;
     private static final PersonIdSequencer idGen = PersonIdSequencer.getInstance();
 
-    public Person(String firstName, String lastName, String email, AppUser credentials) {
+    public Person(String firstName, String lastName) {
         setId(idGen.nextId());
         setFirstName(firstName);
         setLastName(lastName);
-        setEmail(email);
-        setCredentials(credentials);
     }
-
     public int getId() {
         return id;
     }
@@ -47,31 +45,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        if (email == null) throw new IllegalArgumentException("Not allowed to set email to 'null'");
-        this.email = email;
-    }
-
-    private AppUser getCredentials() {
-        return credentials;
-    }
-
-    private void setCredentials(AppUser credentials) {
-        this.credentials = credentials;
-    }
-
     @Override
     public String toString() {
         return "Person {\n" +
                 "\tid = " + getId() + "," +
                 "\t'firstName = '" + getFirstName() + "',\n" +
                 "\tlastName = '" + getLastName() + "',\n" +
-                "\temail ='" + getEmail() + "'\n" +
-                "\tcredentials ='" + getCredentials() + "'\n" +
                 '}';
     }
 
@@ -82,31 +61,21 @@ public class Person {
         Person person = (Person) o;
         return id == person.id &&
                 Objects.equals(firstName, person.firstName) &&
-                Objects.equals(lastName, person.lastName) &&
-                Objects.equals(email, person.email);
+                Objects.equals(lastName, person.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email);
+        return Objects.hash(id, firstName, lastName);
     }
 
     public String getFullName() {
         return getFirstName() + " " + getLastName();
     }
 
-    public void updatePersonData(String firstName, String lastName, String email, Person person) throws IllegalAccessException {
-        if (!hasUserRights(person)) throw new IllegalAccessException("User does not have the rights to update the data of this Person object");
+    public void updatePersonData(String firstName, String lastName, Person person) {
         person.setFirstName(Utils.inst.isNullOrEmpty(firstName) ? person.getFirstName() : firstName);
         person.setLastName(Utils.inst.isNullOrEmpty(lastName) ? person.getLastName() : lastName);
-        person.setEmail(Utils.inst.isNullOrEmpty(email) ? person.getEmail() : email);
-    }
-
-    public boolean hasUserRights(Person person) {
-        if (this.credentials.getRole() == AppRole.ROLE_APP_ADMIN) {
-            return true;
-        }
-        return equals(person) && (person.getCredentials().getRole() == AppRole.ROLE_APP_USER);
     }
 }
 

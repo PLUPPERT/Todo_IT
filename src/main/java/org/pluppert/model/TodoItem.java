@@ -89,7 +89,7 @@ public class TodoItem {
                     "\ttaskDescription = '" + getTaskDescription() + "',\n" +
                     "\tdeadline = " + getDeadline() + ",\n" +
                     "\tdone = " + isDone() + ",\n" +
-                    "\tcreator = '" + getCreator().getFirstName() + " " + getCreator().getLastName() + "',\n" +
+                    "\tcreator = '" + getCreator().getFullName() + "',\n" +
                     "\tisOverdue = " + isOverdue() + ",\n" +
                 '}';
     }
