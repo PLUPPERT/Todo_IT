@@ -2,8 +2,12 @@ package org.pluppert.data;
 
 import org.pluppert.model.Person;
 
-public interface PersonDAO extends BaseDAO<Person, Integer> {
+import java.util.Collection;
+
+public interface PersonDAO extends BaseDAO<Person> {
     PersonDAO INSTANCE = PersonDAOCollection.getInstance();
     Person findById(int id);
-    Person findByEmail(String email);
+    Collection<Person> findByName(String name);
+    Person update(Person person);
+    boolean deleteById(int id);
 }
