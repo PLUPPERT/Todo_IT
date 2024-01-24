@@ -11,6 +11,12 @@ public class Person {
     private String lastName;
     private static final PersonIdSequencer idGen = PersonIdSequencer.getInstance();
 
+    public Person(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Person(String firstName, String lastName) {
         setId(idGen.nextId());
         setFirstName(firstName);

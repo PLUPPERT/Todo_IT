@@ -3,11 +3,10 @@ package org.pluppert.data;
 import org.pluppert.db.MyJDBC;
 import org.pluppert.model.Person;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class PersonDAOCollection implements PersonDAO {
     private static final PersonDAO INSTANCE;
@@ -54,11 +53,50 @@ public class PersonDAOCollection implements PersonDAO {
 
     @Override
     public Collection<Person> findAll() {
-        return null;
+        List<Person> persons = new ArrayList<>();
+
+        try(
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM person");
+                )
+        {
+            while (resultSet.next()) {
+                //ColumnLabel
+                int person_id = resultSet.getInt("person_id");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+
+                Person person = new Person(person_id, firstName, lastName);
+                persons.add(person);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return persons;
     }
     @Override
     public Person findById(int id) {
-        return null;
+        try(
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM person WHERE person_id = ?");
+                )
+        {
+
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new Person(
+                            resultSet.getInt("person_id"),
+                            resultSet.getString("first_name"),
+                            resultSet.getString("last_name")
+                    );
+                }
+            }
+        } catch (SQLException e ) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("No person with id \"" + id + "\" found in database");
     }
 
     @Override
