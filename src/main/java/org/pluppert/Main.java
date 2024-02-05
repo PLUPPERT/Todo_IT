@@ -6,17 +6,35 @@ import org.pluppert.model.Person;
 public class Main {
     public static void main(String[] args) {
         PersonDAO personInstance = PersonDAO.INSTANCE;
-        /*personInstance.create(new Person("Mjau", "Olsson"));
+        /*
+        personInstance.create(new Person("Mjau", "Olsson"));
         personInstance.create(new Person("Vov", "Vovsson"));
         personInstance.create(new Person("Pip", "Pippolo"));
-        personInstance.create(new Person("Blö", "Gnällsson"));*/
+        personInstance.create(new Person("Blö", "Gnällsson"));
+        */
+
+        /*
+        personInstance.findAll().forEach(System.out::println);
+
+        System.out.println("\n---------------------------------------------\n");
+
+        personInstance.create(new Person("Waria", "Peacedottir"));
+
+        System.out.println("\n---------------------------------------------\n");
+        */
+
+//        personInstance.create(new Person("Blogg", "Influencia"));
 
         personInstance.findAll().forEach(System.out::println);
 
         System.out.println("\n---------------------------------------------\n");
 
-        Person person1 = personInstance.findById(2);
-        System.out.println("person1 = " + person1);
+        System.out.println("findById(?) = " + personInstance.findById(6));
+
+        System.out.println("\n---------------------------------------------\n");
+
+        System.out.println("findByName: ");
+        personInstance.findByName("sson").forEach(System.out::println);
 
     }
 }

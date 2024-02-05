@@ -1,5 +1,6 @@
 package org.pluppert.data;
 
+import org.pluppert.data.impl.PersonDAOCollection;
 import org.pluppert.model.Person;
 
 import java.util.Collection;

@@ -1,5 +1,6 @@
-package org.pluppert.data;
+package org.pluppert.data.impl;
 
+import org.pluppert.data.TodoItemTaskDAO;
 import org.pluppert.model.TodoItemTask;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class TodoItemTaskDAOCollection implements TodoItemTaskDAO {
         taskList = new ArrayList<>();
     }
 
-    static TodoItemTaskDAO getInstance() {
+    public static TodoItemTaskDAO getInstance() {
         return INSTANCE;
     }
 

@@ -9,6 +9,8 @@ public class MyJDBC {
     private static final String JDBC_USERNAME = "root";
     private static final String JDBC_PASSWORD = "root1234";
 
+    private MyJDBC() {}
+
     public static Connection getConnection() {
         Connection connection = null;
         try {

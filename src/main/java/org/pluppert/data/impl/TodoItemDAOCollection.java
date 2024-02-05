@@ -1,5 +1,6 @@
-package org.pluppert.data;
+package org.pluppert.data.impl;
 
+import org.pluppert.data.TodoItemDAO;
 import org.pluppert.model.TodoItem;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class TodoItemDAOCollection implements TodoItemDAO {
         todoItemList = new ArrayList<>();
     }
 
-    static TodoItemDAO getInstance() {
+    public static TodoItemDAO getInstance() {
         return INSTANCE;
     }
 

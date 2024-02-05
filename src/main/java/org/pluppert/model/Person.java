@@ -1,7 +1,5 @@
 package org.pluppert.model;
 
-import org.pluppert.sequencer.PersonIdSequencer;
-
 import java.util.Objects;
 
 public class Person {
@@ -9,16 +7,14 @@ public class Person {
     private int id;
     private String firstName;
     private String lastName;
-    private static final PersonIdSequencer idGen = PersonIdSequencer.getInstance();
 
     public Person(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
     public Person(String firstName, String lastName) {
-        setId(idGen.nextId());
+        this.id= 0;
         setFirstName(firstName);
         setLastName(lastName);
     }
@@ -26,7 +22,7 @@ public class Person {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -51,8 +47,8 @@ public class Person {
     @Override
     public String toString() {
         return "Person {\n" +
-                "\tid = " + getId() + "," +
-                "\t'firstName = '" + getFirstName() + "',\n" +
+                "\tid = " + getId() + ",\n" +
+                "\tfirstName = '" + getFirstName() + "',\n" +
                 "\tlastName = '" + getLastName() + "',\n" +
                 '}';
     }
@@ -74,6 +70,9 @@ public class Person {
 
     public String getFullName() {
         return getFirstName() + " " + getLastName();
+    }
+    public void updateId(Person prevId, int newId) {
+        if (prevId.getId() == 0) prevId.setId(newId);
     }
 }
 

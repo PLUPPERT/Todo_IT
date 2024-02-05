@@ -1,5 +1,6 @@
 package org.pluppert.data;
 
+import org.pluppert.data.impl.TodoItemTaskDAOCollection;
 import org.pluppert.model.TodoItemTask;
 
 import java.util.Collection;

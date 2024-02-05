@@ -1,4 +1,5 @@
-package org.pluppert.data;
+package org.pluppert.data.impl;
+import org.pluppert.data.AppUserDAO;
 import org.pluppert.model.AppUser;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class AppUserDAOCollection implements AppUserDAO {
         appUserList = new ArrayList<>();
     }
 
-    static AppUserDAO getInstance() {
+    public static AppUserDAO getInstance() {
         return INSTANCE;
     }
 

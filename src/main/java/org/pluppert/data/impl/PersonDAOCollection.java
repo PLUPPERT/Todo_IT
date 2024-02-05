@@ -1,5 +1,6 @@
-package org.pluppert.data;
+package org.pluppert.data.impl;
 
+import org.pluppert.data.PersonDAO;
 import org.pluppert.db.MyJDBC;
 import org.pluppert.model.Person;
 
@@ -10,14 +11,14 @@ import java.util.List;
 
 public class PersonDAOCollection implements PersonDAO {
     private static final PersonDAO INSTANCE;
-    private static Connection connection;
+    private static final Connection connection;
 
     static {
         INSTANCE = new PersonDAOCollection();
         connection = MyJDBC.getConnection();
     }
 
-    static PersonDAO getInstance() {
+    public static PersonDAO getInstance() {
         return INSTANCE;
     }
 
@@ -25,21 +26,19 @@ public class PersonDAOCollection implements PersonDAO {
     public Person create(Person person) {
         if (person == null) throw new NullPointerException("person is null");
         String insertQuery = "INSERT INTO person (first_name, last_name) VALUES(?,?)";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(insertQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)
         ) {
             preparedStatement.setString(1, person.getFirstName());
             preparedStatement.setString(2, person.getLastName());
 
-            int rowsAffected = preparedStatement.executeUpdate();
-
-            if (rowsAffected > 0) {
+            if (preparedStatement.executeUpdate() > 0) {
                 System.out.println("Person created successfully!");
             }
 
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int generatedPersonId = generatedKeys.getInt(1);
-                    person.setId(generatedPersonId);
+                    person.updateId(person, generatedPersonId);
                     System.out.println("generatedPersonId = " + generatedPersonId);
                 } else {
                     System.out.println("No key were generated");
@@ -55,19 +54,17 @@ public class PersonDAOCollection implements PersonDAO {
     public Collection<Person> findAll() {
         List<Person> persons = new ArrayList<>();
 
-        try(
+        try (
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM person");
-                )
-        {
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM person")
+        ) {
             while (resultSet.next()) {
                 //ColumnLabel
-                int person_id = resultSet.getInt("person_id");
+                int personId = resultSet.getInt("person_id");
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
 
-                Person person = new Person(person_id, firstName, lastName);
-                persons.add(person);
+                persons.add(new Person(personId, firstName, lastName));
             }
 
         } catch (SQLException e) {
@@ -75,12 +72,12 @@ public class PersonDAOCollection implements PersonDAO {
         }
         return persons;
     }
+
     @Override
     public Person findById(int id) {
-        try(
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM person WHERE person_id = ?");
-                )
-        {
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM person WHERE person_id = ?")
+        ) {
 
             preparedStatement.setInt(1, id);
 
@@ -93,7 +90,7 @@ public class PersonDAOCollection implements PersonDAO {
                     );
                 }
             }
-        } catch (SQLException e ) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         throw new RuntimeException("No person with id \"" + id + "\" found in database");
@@ -101,7 +98,33 @@ public class PersonDAOCollection implements PersonDAO {
 
     @Override
     public Collection<Person> findByName(String name) {
-        return null;
+        List<Person> persons = new ArrayList<>();
+
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        """
+                                SELECT * FROM person
+                                WHERE UPPER(first_name) LIKE ?
+                                OR UPPER(last_name) LIKE ?
+                                """
+                )
+        ) {
+            preparedStatement.setString(1, "%" + name.toUpperCase() + "%");
+            preparedStatement.setString(2, "%" + name.toUpperCase() + "%");
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int personId = resultSet.getInt("person_id");
+                    String firstName = resultSet.getString("first_name");
+                    String lastName = resultSet.getString("last_name");
+
+                    persons.add(new Person(personId, firstName, lastName));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return persons;
     }
 
     @Override

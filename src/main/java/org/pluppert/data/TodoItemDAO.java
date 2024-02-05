@@ -1,5 +1,6 @@
 package org.pluppert.data;
 
+import org.pluppert.data.impl.TodoItemDAOCollection;
 import org.pluppert.model.TodoItem;
 
 import java.time.LocalDate;
