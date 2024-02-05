@@ -6,6 +6,7 @@ target/
 ### IntelliJ IDEA ###
 .idea/*
 .idea/sonarlint
+.idea/sonarlint/issuestore/c/6
 *.iws
 *.iml
 *.ipr
