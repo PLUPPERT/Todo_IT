@@ -106,7 +106,7 @@ public class PersonDAOCollection implements PersonDAO {
                                 SELECT * FROM person
                                 WHERE UPPER(first_name) LIKE ?
                                 OR UPPER(last_name) LIKE ?
-                                """
+                            """
                 )
         ) {
             preparedStatement.setString(1, "%" + name.toUpperCase() + "%");
