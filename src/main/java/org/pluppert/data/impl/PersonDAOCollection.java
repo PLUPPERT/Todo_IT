@@ -102,15 +102,10 @@ public class PersonDAOCollection implements PersonDAO {
 
         try (
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        """
-                                SELECT * FROM person
-                                WHERE UPPER(first_name) LIKE ?
-                                OR UPPER(last_name) LIKE ?
-                            """
+                        "SELECT * FROM person WHERE CONCAT_WS(' ', UPPER(first_name), UPPER(last_name)) LIKE ?"
                 )
         ) {
             preparedStatement.setString(1, "%" + name.toUpperCase() + "%");
-            preparedStatement.setString(2, "%" + name.toUpperCase() + "%");
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {

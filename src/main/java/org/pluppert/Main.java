@@ -34,7 +34,7 @@ public class Main {
         System.out.println("\n---------------------------------------------\n");
 
         System.out.println("findByName: ");
-        personInstance.findByName("Blö Gnällsson").forEach(System.out::println);
+        personInstance.findByName("ls").forEach(System.out::println);
 
     }
 }
