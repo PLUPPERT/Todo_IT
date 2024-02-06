@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class PersonDAOCollection implements PersonDAO {
     private static final PersonDAO INSTANCE;
@@ -76,7 +77,9 @@ public class PersonDAOCollection implements PersonDAO {
     @Override
     public Person findById(int id) {
         try (
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM person WHERE person_id = ?")
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT * FROM person WHERE person_id = ?"
+                )
         ) {
 
             preparedStatement.setInt(1, id);
@@ -124,7 +127,29 @@ public class PersonDAOCollection implements PersonDAO {
 
     @Override
     public Person update(Person person) {
-        return null;
+        Optional<Person> optPerson = Optional.of(findById(person.getId()));
+
+        Person updatePerson = optPerson.orElseThrow(() ->
+                new IllegalArgumentException("No person with id '" + person.getId() + "' were found in database."));
+
+        String sql = "UPDATE person "
+                + "SET first_name = ?, Last_name = ? "
+                + "WHERE person_id = ?";
+
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+        ) {
+            preparedStatement.setString(1, person.getFirstName());
+            preparedStatement.setString(2, person.getLastName());
+            preparedStatement.setInt(3, updatePerson.getId());
+
+            int rowAffected = preparedStatement.executeUpdate();
+            if (rowAffected > 0) System.out.println("Update were successful");
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update person with id '" + person.getId() + "'", e);
+        }
+
+        return findById(updatePerson.getId());
     }
 
     @Override
