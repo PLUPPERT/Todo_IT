@@ -105,7 +105,8 @@ public class PersonDAOCollection implements PersonDAO {
 
         try (
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * FROM person WHERE CONCAT_WS(' ', UPPER(first_name), UPPER(last_name)) LIKE ?"
+                        "SELECT * FROM person WHERE "
+                        + "CONCAT_WS(' ', UPPER(first_name), UPPER(last_name)) LIKE ?"
                 )
         ) {
             preparedStatement.setString(1, "%" + name.toUpperCase() + "%");
@@ -154,7 +155,20 @@ public class PersonDAOCollection implements PersonDAO {
 
     @Override
     public boolean deleteById(int id) {
-        return false;
-    }
+        String sql = "DELETE FROM person WHERE person_id = ?";
+        boolean deletionOk;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            deletionOk = preparedStatement.executeUpdate() == 1;
 
+            if (!deletionOk) {
+                System.out.println("Failed to delete person with id '" + id + "'");
+            } else {
+                System.out.println("Successfully deleted person with id '" + id + "'");
+            }
+            return deletionOk;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to delete person with id '" + id + "'", e);
+        }
+    }
 }

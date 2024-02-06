@@ -30,19 +30,24 @@ public class Main {
 
         System.out.println(dottedLine);
 
-        System.out.println("findById(?) = " + personInstance.findById(6));
+//        System.out.println("findById(?) = " + personInstance.findById(6));
+//
+//        System.out.println(dottedLine);
+//
+//        System.out.println("findByName: ");
+//        personInstance.findByName("ls").forEach(System.out::println);
+//
+//        System.out.println(dottedLine);
+//
+//        System.out.println("(Person) update:");
+//        System.out.println("   Before update:");
+//        System.out.println("   " + personInstance.findById(2));
+//        System.out.println("   After update:");
+//        System.out.println("   " + personInstance.update(new Person(2, "Kisse", "Spinnaker")));
+        System.out.println("deleteById: ");
+        personInstance.deleteById(3);
+        personInstance.findAll().forEach(System.out::println);
 
         System.out.println(dottedLine);
-
-        System.out.println("findByName: ");
-        personInstance.findByName("ls").forEach(System.out::println);
-
-        System.out.println(dottedLine);
-
-        System.out.println("(Person) update:");
-        System.out.println("   Before update:");
-        System.out.println("   " + personInstance.findById(2));
-        System.out.println("   After update:");
-        System.out.println("   " + personInstance.update(new Person(2, "Kisse", "Spinnaker")));
     }
 }
