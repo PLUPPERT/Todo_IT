@@ -61,9 +61,9 @@ public class PersonDAOCollection implements PersonDAO {
         ) {
             while (resultSet.next()) {
                 //ColumnLabel
-                int personId = resultSet.getInt("person_id");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
+                int personId = resultSet.getInt(1);
+                String firstName = resultSet.getString(2);
+                String lastName = resultSet.getString(3);
 
                 persons.add(new Person(personId, firstName, lastName));
             }
@@ -87,9 +87,9 @@ public class PersonDAOCollection implements PersonDAO {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return new Person(
-                            resultSet.getInt("person_id"),
-                            resultSet.getString("first_name"),
-                            resultSet.getString("last_name")
+                            resultSet.getInt(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3)
                     );
                 }
             }
@@ -113,9 +113,9 @@ public class PersonDAOCollection implements PersonDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int personId = resultSet.getInt("person_id");
-                    String firstName = resultSet.getString("first_name");
-                    String lastName = resultSet.getString("last_name");
+                    int personId = resultSet.getInt(1);
+                    String firstName = resultSet.getString(2);
+                    String lastName = resultSet.getString(3);
 
                     persons.add(new Person(personId, firstName, lastName));
                 }

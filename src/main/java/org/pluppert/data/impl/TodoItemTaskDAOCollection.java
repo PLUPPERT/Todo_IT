@@ -5,7 +5,6 @@ import org.pluppert.model.TodoItemTask;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class TodoItemTaskDAOCollection implements TodoItemTaskDAO {
@@ -13,12 +12,6 @@ public class TodoItemTaskDAOCollection implements TodoItemTaskDAO {
 
     static {
         INSTANCE = new TodoItemTaskDAOCollection();
-    }
-
-    private final List<TodoItemTask> taskList;
-
-    private TodoItemTaskDAOCollection() {
-        taskList = new ArrayList<>();
     }
 
     public static TodoItemTaskDAO getInstance() {
@@ -32,7 +25,7 @@ public class TodoItemTaskDAOCollection implements TodoItemTaskDAO {
 
     @Override
     public Collection<TodoItemTask> findAll() {
-        return List.copyOf(taskList);
+        return null;
     }
 
     @Override

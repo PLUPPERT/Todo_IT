@@ -3,7 +3,6 @@ package org.pluppert.data;
 import org.pluppert.data.impl.TodoItemDAOCollection;
 import org.pluppert.model.TodoItem;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 

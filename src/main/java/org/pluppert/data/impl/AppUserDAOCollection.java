@@ -2,9 +2,7 @@ package org.pluppert.data.impl;
 import org.pluppert.data.AppUserDAO;
 import org.pluppert.model.AppUser;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class AppUserDAOCollection implements AppUserDAO {
 
@@ -14,11 +12,7 @@ public class AppUserDAOCollection implements AppUserDAO {
         INSTANCE = new AppUserDAOCollection();
     }
 
-    private final List<AppUser> appUserList;
 
-    private AppUserDAOCollection() {
-        appUserList = new ArrayList<>();
-    }
 
     public static AppUserDAO getInstance() {
         return INSTANCE;
@@ -34,7 +28,6 @@ public class AppUserDAOCollection implements AppUserDAO {
     @Override
     public AppUser create(AppUser appUser) {
         if (appUser == null) throw new NullPointerException("appUser is null");
-        appUserList.add(appUser);
         return appUser;
     }
 
