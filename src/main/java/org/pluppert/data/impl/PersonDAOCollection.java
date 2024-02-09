@@ -157,6 +157,7 @@ public class PersonDAOCollection implements PersonDAO {
     public boolean deleteById(int id) {
         String sql = "DELETE FROM person WHERE person_id = ?";
         boolean deletionOk;
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             deletionOk = preparedStatement.executeUpdate() == 1;

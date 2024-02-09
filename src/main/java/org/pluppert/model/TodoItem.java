@@ -1,26 +1,42 @@
 package org.pluppert.model;
 
-import org.pluppert.sequencer.TodoItemIdSequencer;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class TodoItem {
     private int id;
     private String title;
-    private String taskDescription;
-    private LocalDate deadline;
+    private String description;
+    private LocalDateTime deadline;
     private boolean done;
+    private Person assignee;
     private Person creator;
-    private static final TodoItemIdSequencer idGen = TodoItemIdSequencer.getInstance();
 
-    public TodoItem(String title, String taskDescription, LocalDate deadline, Person creator) {
-        setId(idGen.nextId());
+    public TodoItem(String title, String description, Person creator) {
         setTitle(title);
+        setDescription((description == null) ? "" : description);
         setCreator(creator);
-        setTaskDescription((taskDescription == null) ? "" : taskDescription);
-        setDeadline(deadline == null ? LocalDate.now() : deadline);
+        setId(0);
+        setDeadline(null);
         setDone(false);
+    }
+    public TodoItem(String title, String description, LocalDateTime deadline, Person creator) {
+        this(title, description, creator);
+        setDeadline(deadline);
+        setDone(false);
+        setCreator(creator);
+    }
+    public TodoItem(String title, String description, LocalDateTime deadline, Person assignee, Person creator) {
+        this(title, description, deadline, creator);
+        setId(0);
+        setDone(false);
+        setAssignee(assignee);
+    }
+    public TodoItem(String title, String description, LocalDateTime deadline, boolean done, Person assignee, Person creator) {
+        this(title, description, deadline, assignee, creator);
+        setId(0);
+        setDone(done);
     }
 
     public int getId() {
@@ -43,21 +59,31 @@ public class TodoItem {
         this.title = title;
     }
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public LocalDate getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(LocalDate deadline) {
-        if (deadline == null) throw new IllegalArgumentException("Deadline can't be set to 'null'");
-        this.deadline = deadline;
+    public void setDeadline(LocalDateTime deadline) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String deadlineString;
+        String subString;
+        String editedDeadline;
+        LocalDateTime setDeadline;
+        if (deadline != null) {
+            deadlineString = deadline.toString();
+            subString = deadlineString.substring(19);
+            editedDeadline = deadlineString.replace(subString, "").replace("T", " ");
+            setDeadline = LocalDateTime.parse(editedDeadline, formatter);
+            this.deadline = setDeadline;
+        }
     }
 
     public boolean isDone() {
@@ -66,6 +92,14 @@ public class TodoItem {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public Person getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Person assignee) {
+        this.assignee = assignee;
     }
 
     public Person getCreator() {
@@ -78,19 +112,27 @@ public class TodoItem {
     }
 
     public boolean isOverdue() {
-        return getDeadline().isBefore(LocalDate.now());
+        return getDeadline().isBefore(LocalDateTime.now());
+    }
+
+    public void updateId(TodoItem prevId, int newId) {
+        if (prevId.getId() == 0) prevId.setId(newId);
     }
 
     @Override
     public String toString() {
+        String getAssignee = getAssignee() == null ? "---" : getAssignee().getFullName();
+        String isOverdue = getDeadline() == null ? "---" : String.valueOf(isOverdue());
+
         return "TodoItem {\n" +
                     "\tid = '" + getId() + "',\n" +
                     "\ttitle = '" + getTitle() + "',\n" +
-                    "\ttaskDescription = '" + getTaskDescription() + "',\n" +
+                    "\ttaskDescription = '" + getDescription() + "',\n" +
                     "\tdeadline = " + getDeadline() + ",\n" +
                     "\tdone = " + isDone() + ",\n" +
+                    "\tisOverdue = " + isOverdue + ",\n" +
+                    "\tassignee = " + getAssignee + ",\n" +
                     "\tcreator = '" + getCreator().getFullName() + "',\n" +
-                    "\tisOverdue = " + isOverdue() + ",\n" +
                 '}';
     }
 
@@ -102,12 +144,12 @@ public class TodoItem {
         return id == todoItem.id &&
                 done == todoItem.done &&
                 Objects.equals(title, todoItem.title) &&
-                Objects.equals(taskDescription, todoItem.taskDescription) &&
+                Objects.equals(description, todoItem.description) &&
                 Objects.equals(deadline, todoItem.deadline);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, taskDescription, deadline, done);
+        return Objects.hash(id, title, description, deadline, done);
     }
 }

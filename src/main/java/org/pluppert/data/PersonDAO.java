@@ -7,6 +7,7 @@ import java.util.Collection;
 
 public interface PersonDAO extends BaseDAO<Person> {
     PersonDAO INSTANCE = PersonDAOCollection.getInstance();
+    Person create(Person person);
     Person findById(int id);
     Collection<Person> findByName(String name);
     Person update(Person person);
