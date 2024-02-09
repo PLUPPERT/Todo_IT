@@ -5,6 +5,8 @@ import org.pluppert.data.TodoItemDAO;
 import org.pluppert.model.Person;
 import org.pluppert.model.TodoItem;
 
+import java.time.LocalDateTime;
+
 public class Main {
     public static void main(String[] args) {
         PersonDAO personInstance = PersonDAO.INSTANCE;
@@ -39,21 +41,10 @@ public class Main {
                 personInstance.findById(4)
         ));*/
 
-        personInstance.findAll().forEach(System.out::println);
-
         System.out.println(dottedLine);
 
-        System.out.println("findAll (TodoItem) : ");
-        itemInstance.findAll().forEach(System.out::println);
+        itemInstance.findByTitleContains("e_").forEach(System.out::println);
 
         System.out.println(dottedLine);
-
-        System.out.println("findById (TodoItem) : ");
-        System.out.println(itemInstance.findById(33));
-
-        System.out.println(dottedLine);
-
-
-
     }
 }

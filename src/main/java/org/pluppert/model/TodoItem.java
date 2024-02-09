@@ -12,6 +12,7 @@ public class TodoItem {
     private boolean done;
     private Person assignee;
     private Person creator;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public TodoItem(String title, String description, Person creator) {
         setTitle(title);
@@ -72,17 +73,11 @@ public class TodoItem {
     }
 
     public void setDeadline(LocalDateTime deadline) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String deadlineString;
-        String subString;
-        String editedDeadline;
-        LocalDateTime setDeadline;
         if (deadline != null) {
-            deadlineString = deadline.toString();
-            subString = deadlineString.substring(19);
-            editedDeadline = deadlineString.replace(subString, "").replace("T", " ");
-            setDeadline = LocalDateTime.parse(editedDeadline, formatter);
-            this.deadline = setDeadline;
+            String deadlineString = deadline.toString();
+            String subString = deadlineString.substring(19);
+            String editedDeadline = deadlineString.replace(subString, "").replace("T", " ");
+            this.deadline = LocalDateTime.parse(editedDeadline, formatter);
         }
     }
 
@@ -123,12 +118,13 @@ public class TodoItem {
     public String toString() {
         String getAssignee = getAssignee() == null ? "---" : getAssignee().getFullName();
         String isOverdue = getDeadline() == null ? "---" : String.valueOf(isOverdue());
+        var getDeadline = getDeadline() == null ? getDeadline() : getDeadline().format(formatter);
 
         return "TodoItem {\n" +
                     "\tid = '" + getId() + "',\n" +
                     "\ttitle = '" + getTitle() + "',\n" +
                     "\ttaskDescription = '" + getDescription() + "',\n" +
-                    "\tdeadline = " + getDeadline() + ",\n" +
+                    "\tdeadline = " + getDeadline + ",\n" +
                     "\tdone = " + isDone() + ",\n" +
                     "\tisOverdue = " + isOverdue + ",\n" +
                     "\tassignee = " + getAssignee + ",\n" +
@@ -141,15 +137,17 @@ public class TodoItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TodoItem todoItem = (TodoItem) o;
-        return id == todoItem.id &&
-                done == todoItem.done &&
-                Objects.equals(title, todoItem.title) &&
-                Objects.equals(description, todoItem.description) &&
-                Objects.equals(deadline, todoItem.deadline);
+        return id == todoItem.id
+                && done == todoItem.done
+                && Objects.equals(title, todoItem.title)
+                && Objects.equals(description, todoItem.description)
+                && Objects.equals(deadline, todoItem.deadline)
+                && Objects.equals(assignee, todoItem.assignee)
+                && Objects.equals(creator, todoItem.creator);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, deadline, done);
+        return Objects.hash(id, title, description, deadline, done, assignee, creator);
     }
 }

@@ -25,12 +25,14 @@ public class TodoItemDAOCollection implements TodoItemDAO {
         connection = MyJDBC.getConnection();
     }
 
+    private static String ifNull = "'null' is not a valid parameter";
+
     public static TodoItemDAO getInstance() {
         return INSTANCE;
     }
 
     @Override
-    public TodoItem createItem(TodoItem todoItem) {
+    public TodoItem create(TodoItem todoItem) {
         if (todoItem == null) throw new NullPointerException("todoItem is null");
         int creatorId = todoItem.getCreator().getId();
 
@@ -156,7 +158,7 @@ public class TodoItemDAOCollection implements TodoItemDAO {
     }
 
     @Override
-    public Collection<TodoItem> findAllByDoneStatus(boolean done) {
+    public Collection<TodoItem> findByDoneStatus(boolean done) {
         return findAll().stream()
                 .filter(todoItem -> todoItem.isDone() == done)
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -165,29 +167,56 @@ public class TodoItemDAOCollection implements TodoItemDAO {
     @Override
     public Collection<TodoItem> findByTitleContains(String title) {
         return findAll().stream()
-                .filter(todoItem -> todoItem.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .filter(todoItem -> todoItem.getTitle().toLowerCase().contains(title))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
-    public Collection<TodoItem> findByPersonId(int id) {
+    public Collection<TodoItem> findByAssignee(int id) {
         return findAll().stream()
                 .filter(todoItem -> todoItem.getCreator().getId() == id)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+    @Override
+    public Collection<TodoItem> findByAssignee(Person person) {
+        if (person == null) throw new IllegalArgumentException(ifNull);
+        return findAll().stream()
+                .filter(todoItem -> todoItem.getCreator().getId() == person.getId())
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    @Override
+    public Collection<TodoItem> findByUnassigned() {
+        return null;
+    }
 
     @Override
     public Collection<TodoItem> findByDeadlineBefore(LocalDateTime date) {
+        if (date == null) throw new IllegalArgumentException(ifNull);
         return findAll().stream()
+                .filter(todoItem -> todoItem.getDeadline() != null)
                 .filter(todoItem -> todoItem.getDeadline().isBefore(date))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
     public Collection<TodoItem> findByDeadlineAfter(LocalDateTime date) {
+        if (date == null) throw new IllegalArgumentException(ifNull);
         return findAll().stream()
+                .filter(todoItem -> todoItem.getDeadline() != null)
                 .filter(todoItem -> todoItem.getDeadline().isAfter(date))
                 .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    @Override
+    public TodoItem update(TodoItem item) {
+        if (item == null) throw new IllegalArgumentException(ifNull);
+        return null;
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        return false;
     }
 }
 
